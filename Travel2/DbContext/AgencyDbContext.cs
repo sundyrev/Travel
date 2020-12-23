@@ -17,6 +17,7 @@ namespace Travel2.Controllers
         public AgencyDbContext(DbContextOptions<AgencyDbContext> options) : base(options)
         {
             Options = options;
+            Database.EnsureCreated();
 
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

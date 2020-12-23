@@ -1,13 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using Travel2.Interfaces;
 using Travel2.Models;
 
 namespace Travel2.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     public class AgentsController : Controller
     {
         private IAgentRepository _agentRepository;
@@ -18,12 +16,12 @@ namespace Travel2.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Agent> CreateAgent(Agent agent)
+        public ActionResult<Agent> CreateAgent([FromForm] Agent agent)
         {
             _agentRepository.InsertAgent(agent);
             _agentRepository.Save();
 
-            return CreatedAtAction("GetAgent", new { id = agent.Id }, agent);
+            return Ok(agent);   
         }
     }
 }

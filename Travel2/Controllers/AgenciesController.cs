@@ -68,25 +68,25 @@ namespace Travel2.Controllers
             _agencyRepository.InsertAgency(agency); 
             _agencyRepository.Save(); 
 
-            return CreatedAtAction("GetAngency", new { id = agency.Id }, agency);
+            return Ok(agency); //CreatedAtAction("GetAngency", new { id = agency.Id }, agency);
         }
 
         [HttpPut("{id}")]
-        public IActionResult AddAgentToAgency(int agencyId, [FromForm] Agent agent)
+        public IActionResult AddAgentToAgency(int id, [FromForm] Agent agent)
         {
-            Agency agency = _agencyRepository.GetAgency(agencyId);
+            Agency agency = _agencyRepository.GetAgency(id);
             if (agency == null)
             {
                 return NotFound();
             }
             try
             {
-                _agencyRepository.AddAgentToAgency(agencyId, agent);
+                _agencyRepository.AddAgentToAgency(id, agent);
                 _agencyRepository.Save();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AgencyExists(agencyId))
+                if (!AgencyExists(id))
                 {
                     return NotFound();
                 }
