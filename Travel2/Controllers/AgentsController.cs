@@ -19,7 +19,6 @@ namespace Travel2.Controllers
         public ActionResult<Agent> CreateAgent([FromForm] Agent agent)
         {
             _agentRepository.InsertAgent(agent);
-            _agentRepository.Save();
 
             return Ok(agent);   
         }

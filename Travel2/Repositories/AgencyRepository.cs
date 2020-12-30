@@ -20,7 +20,7 @@ namespace Travel2.Repositories
 
         public List<Agency> GetAllAgencies()
         {
-            return _context.Agencies.ToList();//.Include(c => c.Agents)
+            return _context.Agencies.ToList(); //.Include(c => c.Agents)
         }
         public Agency GetAgency(int agencyId)
         {
@@ -32,21 +32,19 @@ namespace Travel2.Repositories
         public void InsertAgency(Agency agency)
         {
             _context.Agencies.Add(agency);
+            _context.SaveChanges();
         }
 
         public void DeleteAgency(int agencyId)
         {
             Agency agency = _context.Agencies.Find(agencyId);
             _context.Agencies.Remove(agency);
+            _context.SaveChanges();
         }
 
         public void UpdateAgency(Agency agency)
         {
             _context.Entry(agency).State = EntityState.Modified;
-        }
-
-        public void Save()
-        {
             _context.SaveChanges();
         }
 
@@ -74,6 +72,7 @@ namespace Travel2.Repositories
             {
                 agency.Agents.Add(agent);
                 _context.Entry(agency).State = EntityState.Modified;
+                _context.SaveChanges();
             }
         }
     }

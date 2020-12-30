@@ -1,11 +1,12 @@
-﻿using System;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Travel2.Models
 {
     public class Agent
     {
-        Int32 id;
-        public Int32 Id
+        int id;
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id
         {
             get { return id; }
             set { id = value; }
@@ -14,8 +15,8 @@ namespace Travel2.Models
         /// <summary>
         /// Name of agent
         /// </summary>
-        String name;
-        public String Name
+        string name;
+        public string Name
         {
             get { return name; }
             set { name = value; }
@@ -24,8 +25,8 @@ namespace Travel2.Models
         /// <summary>
         /// surname of agent
         /// </summary>
-        String surname;
-        public String Surname
+        string surname;
+        public string Surname
         {
             get { return surname; }
             set { surname = value; }

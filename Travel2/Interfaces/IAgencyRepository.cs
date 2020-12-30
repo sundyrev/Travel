@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Travel2.Models;
 
 namespace Travel2.Interfaces
@@ -14,6 +11,5 @@ namespace Travel2.Interfaces
         void DeleteAgency(int agencyId);
         void UpdateAgency(Agency agency);
         void AddAgentToAgency(int AgencyId, Agent agent);
-        void Save();
     }
 }

@@ -1,8 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Travel2.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Data.Entity.Validation;
 
 namespace Travel2.Controllers
 {
@@ -25,6 +24,24 @@ namespace Travel2.Controllers
             modelBuilder.Entity<Agency>().ToTable("Agencies");
             modelBuilder.Entity<Agent>().ToTable("Agents");
             modelBuilder.Entity<Agency>().Property(b => b.Id).ValueGeneratedOnAdd();
+        }
+        public override int SaveChanges()
+        {
+            try
+            {
+                return base.SaveChanges();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                var errorMessages = ex.EntityValidationErrors
+                        .SelectMany(x => x.ValidationErrors)
+                        .Select(x => x.ErrorMessage);
+
+                var fullErrorMessage = string.Join("; ", errorMessages);
+                var exceptionMessage = string.Concat(ex.Message, " The validation errors are: ", fullErrorMessage);
+
+                throw new DbEntityValidationException(exceptionMessage, ex.EntityValidationErrors);
+            }
         }
     }
 }

@@ -15,10 +15,6 @@ namespace Travel2.Repositories
         public void InsertAgent(Agent agent)
         {
             _context.Agents.Add(agent);
-        }
-
-        public void Save()
-        {
             _context.SaveChanges();
         }
     }

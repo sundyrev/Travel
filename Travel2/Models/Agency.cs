@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using Travel2.Models;
@@ -16,8 +15,8 @@ namespace Travel2
         /// <summary>
         /// Name of agency
         /// </summary>
-        String name;
-        public String Name
+        string name;
+        public string Name
         {
             get { return name; }
             set { name = value; }
@@ -26,8 +25,8 @@ namespace Travel2
         /// <summary>
         /// Address of agency
         /// </summary>
-        String address;
-        public String Address
+        string address;
+        public string Address
         {
             get { return address; }
             set { address = value; }
